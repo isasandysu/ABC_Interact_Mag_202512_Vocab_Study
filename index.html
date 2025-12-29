@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABC雜誌單字整理 (2025-12)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Bebas+Neue&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff6b35;
+            --secondary: #f7931e;
+            --accent: #fdc500;
+            --dark: #1a1a2e;
+            --darker: #0f0f1e;
+            --light: #f4f4f9;
+            --success: #4ecdc4;
+            --error: #ff4757;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .background-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.05) 35px, rgba(255,255,255,.05) 70px);
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Styles */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 60px var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 4rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
+            color: var(--light);
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 107, 53, 0.2);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.5);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Quick Reference Cards */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .vocab-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            border: 2px solid rgba(255,107,53,0.3);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+        }
+
+        .vocab-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
+        }
+
+        .vocab-word {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .vocab-phonetic {
+            font-style: italic;
+            opacity: 0.7;
+            margin-bottom: 5px;
+        }
+
+        .vocab-pos {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        .vocab-meaning {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+
+        .vocab-example {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            padding-left: 15px;
+            border-left: 3px solid var(--accent);
+            margin-top: 10px;
+        }
+
+        .vocab-translation {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+
+        /* Quiz Section */
+        .quiz-container {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            border: 2px solid rgba(255,107,53,0.3);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 60px var(--shadow);
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .quiz-progress {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        .quiz-score {
+            font-size: 1.2rem;
+            background: rgba(78, 205, 196, 0.2);
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 2px solid var(--success);
+        }
+
+        .question-card {
+            background: rgba(26, 26, 46, 0.6);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .question-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--accent);
+        }
+
+        .options-grid {
+            display: grid;
+            gap: 15px;
+        }
+
+        .option-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: var(--light);
+            padding: 20px;
+            font-size: 1.1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        .option-btn:hover {
+            background: rgba(255, 107, 53, 0.2);
+            border-color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .option-btn.correct {
+            background: rgba(78, 205, 196, 0.3);
+            border-color: var(--success);
+            animation: correctPulse 0.5s ease;
+        }
+
+        .option-btn.incorrect {
+            background: rgba(255, 71, 87, 0.3);
+            border-color: var(--error);
+            animation: shake 0.5s ease;
+        }
+
+        .option-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        @keyframes correctPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .quiz-controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Noto Sans TC', sans-serif;
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.6);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--light);
+        }
+
+        /* Results Section */
+        .results-container {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .results-score {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 5rem;
+            color: var(--accent);
+            margin: 30px 0;
+            text-shadow: 0 0 30px rgba(253, 197, 0, 0.5);
+        }
+
+        .results-message {
+            font-size: 1.5rem;
+            margin: 20px 0;
+        }
+
+        .results-details {
+            background: rgba(26, 26, 46, 0.6);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        /* Flashcard Mode */
+        .flashcard-container {
+            perspective: 1000px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .flashcard {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            background: linear-gradient(135deg, rgba(255,107,53,0.2) 0%, rgba(247,147,30,0.2) 100%);
+            border: 3px solid var(--primary);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            box-shadow: 0 20px 60px var(--shadow);
+        }
+
+        .flashcard-back {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-word {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .flashcard-hint {
+            font-size: 1.2rem;
+            opacity: 0.7;
+            margin-top: 20px;
+        }
+
+        /* Unit Filter */
+        .filter-section {
+            margin-bottom: 30px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: var(--light);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            border-color: var(--accent);
+        }
+
+        /* Progress Tracker */
+        .progress-container {
+            background: rgba(26, 26, 46, 0.6);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .progress-bar-container {
+            background: rgba(255, 255, 255, 0.1);
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success) 0%, var(--accent) 100%);
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: rgba(255, 107, 53, 0.1);
+            border: 2px solid rgba(255, 107, 53, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .vocab-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quiz-container {
+                padding: 20px;
+            }
+            
+            .flashcard {
+                height: 300px;
+            }
+            
+            .flashcard-word {
+                font-size: 2rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-pattern"></div>
+    
+    <div class="container">
+        <header>
+            <h1>ABC互動英語雜誌考試筆記（2025年12月號）</h1>
+            <p class="subtitle">單字篇</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('quick-ref')">📚 快速複習</button>
+            <button class="tab-btn" onclick="switchTab('flashcards')">🎴 單字卡</button>
+            <button class="tab-btn" onclick="switchTab('quiz-multi')">✍️ 選擇題測驗</button>
+            <button class="tab-btn" onclick="switchTab('quiz-fill')">📝 填空測驗</button>
+            <button class="tab-btn" onclick="switchTab('quiz-match')">🎯 配對測驗</button>
+            <button class="tab-btn" onclick="switchTab('progress')">📊 學習進度</button>
+        </div>
+
+        <!-- Quick Reference Tab -->
+        <div id="quick-ref" class="tab-content active">
+            <div class="filter-section">
+                <button class="filter-btn active" onclick="filterUnit('all')">全部單元</button>
+                <button class="filter-btn" onclick="filterUnit(1)">Unit 1-5</button>
+                <button class="filter-btn" onclick="filterUnit(2)">Unit 6-10</button>
+                <button class="filter-btn" onclick="filterUnit(3)">Unit 11-15</button>
+                <button class="filter-btn" onclick="filterUnit(4)">Unit 16-20</button>
+            </div>
+            <div id="vocab-container" class="vocab-grid"></div>
+        </div>
+
+        <!-- Flashcards Tab -->
+        <div id="flashcards" class="tab-content">
+            <div class="flashcard-container">
+                <div id="flashcard" class="flashcard" onclick="flipCard()">
+                    <div class="flashcard-face">
+                        <div class="flashcard-word" id="flashcard-word">join</div>
+                        <div class="flashcard-hint">點擊翻轉卡片</div>
+                    </div>
+                    <div class="flashcard-face flashcard-back">
+                        <div id="flashcard-meaning" style="font-size: 1.8rem; margin-bottom: 20px;">v. 參加；加入</div>
+                        <div id="flashcard-phonetic" style="font-style: italic; opacity: 0.8; margin-bottom: 15px;">[dʒɔɪn]</div>
+                        <div id="flashcard-example" style="font-size: 1.1rem; opacity: 0.9; text-align: center;">You are welcome to join the discussion at any time.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="quiz-controls" style="margin-top: 30px;">
+                <button class="btn btn-secondary" onclick="previousCard()">⬅️ 上一張</button>
+                <button class="btn" onclick="nextCard()">下一張 ➡️</button>
+            </div>
+            <div style="text-align: center; margin-top: 20px; font-size: 1.2rem;">
+                <span id="card-counter">1 / 88</span>
+            </div>
+        </div>
+
+        <!-- Multiple Choice Quiz Tab -->
+        <div id="quiz-multi" class="tab-content">
+            <div class="quiz-container">
+                <div class="quiz-header">
+                    <div class="quiz-progress" id="multi-progress">題目 1 / 20</div>
+                    <div class="quiz-score" id="multi-score">正確: 0 | 錯誤: 0</div>
+                </div>
+                <div id="multi-question-container"></div>
+                <div class="quiz-controls">
+                    <button class="btn" id="multi-next-btn" onclick="nextMultiQuestion()" disabled>下一題</button>
+                    <button class="btn btn-secondary" onclick="restartQuiz('multi')">重新開始</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fill in the Blank Quiz Tab -->
+        <div id="quiz-fill" class="tab-content">
+            <div class="quiz-container">
+                <div class="quiz-header">
+                    <div class="quiz-progress" id="fill-progress">題目 1 / 20</div>
+                    <div class="quiz-score" id="fill-score">正確: 0 | 錯誤: 0</div>
+                </div>
+                <div id="fill-question-container"></div>
+                <div class="quiz-controls">
+                    <button class="btn" id="fill-check-btn" onclick="checkFillAnswer()">檢查答案</button>
+                    <button class="btn" id="fill-next-btn" onclick="nextFillQuestion()" disabled>下一題</button>
+                    <button class="btn btn-secondary" onclick="restartQuiz('fill')">重新開始</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Matching Quiz Tab -->
+        <div id="quiz-match" class="tab-content">
+            <div class="quiz-container">
+                <div class="quiz-header">
+                    <div class="quiz-progress">配對測驗</div>
+                    <div class="quiz-score" id="match-score">已配對: 0 / 10</div>
+                </div>
+                <div id="match-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0;">
+                    <div id="match-left" class="options-grid"></div>
+                    <div id="match-right" class="options-grid"></div>
+                </div>
+                <div class="quiz-controls">
+                    <button class="btn" onclick="checkMatching()">檢查配對</button>
+                    <button class="btn btn-secondary" onclick="restartQuiz('match')">重新開始</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Tab -->
+        <div id="progress" class="tab-content">
+            <div class="progress-container">
+                <h2 style="margin-bottom: 20px;">整體學習進度</h2>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="overall-progress" style="width: 0%;">0%</div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-total">0</div>
+                        <div class="stat-label">已學習單字</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-correct">0</div>
+                        <div class="stat-label">答對題數</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-accuracy">0%</div>
+                        <div class="stat-label">正確率</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="stat-streak">0</div>
+                        <div class="stat-label">連續答對</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Vocabulary Data
+        const vocabData = [
+            {word: "join", phonetic: "[dʒɔɪn]", pos: "v.", meaning: "參加；加入", example: "You are welcome to join the discussion at any time.", translation: "你隨時可以加入討論。", unit: 1},
+            {word: "smell", phonetic: "[smɛl]", pos: "n.", meaning: "味道", example: "There was a sweet smell in the air.", translation: "空氣中飄著甜甜的味道。", unit: 1},
+            {word: "fancy", phonetic: "['fænsi]", pos: "adj.", meaning: "高級的；豪華的", example: "Olivia doesn't need anything fancy to make her happy.", translation: "Olivia不需要任何豪華的東西來讓她開心。", unit: 1},
+            {word: "spend", phonetic: "[spɛnd]", pos: "v.", meaning: "花費（金錢或時間）", example: "Tony spends very little money on clothes.", translation: "Tony在衣服上花很少的錢。", unit: 1},
+            {word: "seem", phonetic: "[siːm]", pos: "v.", meaning: "似乎；看起來", example: "Jasmine seems angry for some reason.", translation: "Jasmine似乎因為某些原因而生氣。", unit: 1},
+            {word: "rude", phonetic: "[ruːd]", pos: "adj.", meaning: "粗魯的", example: "Why were you so rude to the clerk?", translation: "你為什麼對店員那麼粗魯？", unit: 2},
+            {word: "accept", phonetic: "[ək'sɛpt]", pos: "v.", meaning: "接受", example: "The boss didn't accept Harry's plan.", translation: "老闆不接受Harry的計畫。", unit: 2},
+            {word: "break", phonetic: "[breɪk]", pos: "n.", meaning: "休息", example: "They stopped for a 10-minute break.", translation: "他們停下來休息10分鐘。", unit: 2},
+            {word: "notice", phonetic: "['noʊtɪs]", pos: "n.", meaning: "通知", example: "Iris cleared the old notices from her screen.", translation: "Iris清除了螢幕上的舊通知。", unit: 2},
+            {word: "bother", phonetic: "['bɑðɚ]", pos: "v.", meaning: "煩擾；打擾", example: "The baby's crying bothered many passengers on the bus.", translation: "寶寶的哭聲打擾了公車上的許多乘客。", unit: 2},
+            {word: "affect", phonetic: "[ə'fɛkt]", pos: "v.", meaning: "影響", example: "The weather always affects Victor's mood.", translation: "天氣總是影響Victor的心情。", unit: 3},
+            {word: "point", phonetic: "['pɔɪnt]", pos: "n.", meaning: "觀點", example: "I see your point, but I don't agree with it.", translation: "我明白你的觀點，但我不同意。", unit: 3},
+            {word: "pile", phonetic: "['paɪl]", pos: "n.", meaning: "一堆；一疊", example: "There's a pile of paper on the floor.", translation: "地板上有一堆紙。", unit: 3},
+            {word: "steal", phonetic: "[stiːl]", pos: "v.", meaning: "偷", example: "It's wrong to steal things from others.", translation: "偷別人的東西是不對的。", unit: 3},
+            {word: "useful", phonetic: "['juːsfəl]", pos: "adj.", meaning: "有用的", example: "I got the app because it looked useful.", translation: "我下載了這個應用程式因為它看起來很有用。", unit: 3},
+            {word: "choice", phonetic: "['tʃɔɪs]", pos: "n.", meaning: "選擇", example: "Who is your first choice for the role?", translation: "誰是你這個角色的首選？", unit: 4},
+            {word: "yard", phonetic: "['jɑrd]", pos: "n.", meaning: "庭院；院子", example: "The kids are playing in the yard.", translation: "孩子們在院子裡玩耍。", unit: 4},
+            {word: "scene", phonetic: "['siːn]", pos: "n.", meaning: "場景", example: "There were many action scenes in the movie.", translation: "電影中有許多動作場景。", unit: 4},
+            {word: "camera", phonetic: "['kæmərə]", pos: "n.", meaning: "攝影機；照相機", example: "The camera in this phone is really good.", translation: "這支手機的相機真的很好。", unit: 4},
+            {word: "minute", phonetic: "['mɪnɪt]", pos: "n.", meaning: "片刻；分鐘", example: "I'll be with you in a minute.", translation: "我馬上就來陪你。", unit: 4},
+            {word: "call", phonetic: "['kɔːl]", pos: "n.", meaning: "通話", example: "There's an important call for you on line one.", translation: "一線有重要的電話找你。", unit: 5},
+            {word: "arrive", phonetic: "[ə'raɪv]", pos: "v.", meaning: "到達；抵達", example: "Many buses arrived at the stop at the same time.", translation: "許多公車同時到達站牌。", unit: 5},
+            {word: "comfortable", phonetic: "['kʌmfətəbəl]", pos: "adj.", meaning: "舒適的；舒服的", example: "Wear comfortable shoes. We're going to walk a lot.", translation: "穿舒適的鞋子，我們要走很多路。", unit: 5},
+            {word: "beautiful", phonetic: "['bjuːtəfəl]", pos: "adj.", meaning: "美麗的", example: "What a beautiful castle!", translation: "多麼美麗的城堡！", unit: 5},
+            {word: "travel", phonetic: "['trævəl]", pos: "v.", meaning: "旅行；旅遊", example: "Dave traveled to Europe by himself.", translation: "Dave自己一個人去歐洲旅行。", unit: 6},
+            {word: "save", phonetic: "['seɪv]", pos: "v.", meaning: "儲蓄；存（錢）", example: "Gary already saved $2,000 for a new scooter.", translation: "Gary已經為一台新摩托車存了2000美元。", unit: 6},
+            {word: "culture", phonetic: "['kʌltʃɚ]", pos: "n.", meaning: "文化", example: "The festival celebrates the cultures of many countries.", translation: "這個節日慶祝許多國家的文化。", unit: 6},
+            {word: "skill", phonetic: "['skɪl]", pos: "n.", meaning: "技能", example: "We use different skills every day.", translation: "我們每天使用不同的技能。", unit: 6},
+            {word: "dance", phonetic: "['dæns]", pos: "n.", meaning: "舞會", example: "The dance is this Friday at seven.", translation: "舞會在這個星期五七點舉行。", unit: 6},
+            {word: "late", phonetic: "['leɪt]", pos: "adv.", meaning: "晚", example: "We got up too late and missed the free breakfast.", translation: "我們起得太晚，錯過了免費早餐。", unit: 7},
+            {word: "cry", phonetic: "['kraɪ]", pos: "v.", meaning: "哭泣", example: "Terry cries when he hears sad stories.", translation: "Terry聽到悲傷的故事時會哭。", unit: 7},
+            {word: "excellent", phonetic: "['ɛksələnt]", pos: "adj.", meaning: "優秀的", example: "Cindy did an excellent job on the project.", translation: "Cindy在這個專案上做得很出色。", unit: 7},
+            {word: "mat", phonetic: "['mæt]", pos: "n.", meaning: "墊子", example: "You have to bring your own yoga mat.", translation: "你必須自備瑜珈墊。", unit: 7},
+            {word: "besides", phonetic: "[bɪ'saɪdz]", pos: "prep.", meaning: "除……之外", example: "Besides Lucy, Erin was out sick.", translation: "除了Lucy之外，Erin也生病了。", unit: 8},
+            {word: "manner", phonetic: "['mænɚ]", pos: "n.", meaning: "態度；舉止", example: "The host greeted everyone in a friendly manner.", translation: "主人以友善的態度問候每個人。", unit: 8},
+            {word: "arrange", phonetic: "[ə'rendʒ]", pos: "v.", meaning: "安排", example: "Sabrina is good at arranging parties.", translation: "Sabrina很擅長安排派對。", unit: 8},
+            {word: "message", phonetic: "['mɛsɪdʒ]", pos: "n.", meaning: "訊息", example: "Amy never opens messages from strangers.", translation: "Amy從不打開陌生人的訊息。", unit: 8},
+            {word: "pressure", phonetic: "['prɛʃɚ]", pos: "n.", meaning: "壓力", example: "I often feel pressure before my exams.", translation: "我經常在考試前感到壓力。", unit: 9},
+            {word: "answer", phonetic: "['ænsɚ]", pos: "v.", meaning: "答覆；回應", example: "Linda usually answers her work emails in the morning.", translation: "Linda通常在早上回覆工作郵件。", unit: 9},
+            {word: "energy", phonetic: "['ɛnɚdʒɪ]", pos: "n.", meaning: "體力；精神", example: "Skylar has the energy to keep hiking.", translation: "Skylar有繼續健行的體力。", unit: 9},
+            {word: "soccer", phonetic: "['sɑkɚ]", pos: "n.", meaning: "足球", example: "Are you interested in joining the soccer club?", translation: "你有興趣加入足球社嗎？", unit: 9},
+            {word: "guy", phonetic: "['gaɪ]", pos: "n.", meaning: "人", example: "Do you know any of those guys over there?", translation: "你認識那邊的那些人嗎？", unit: 10},
+            {word: "active", phonetic: "['æktɪv]", pos: "adj.", meaning: "活躍的", example: "My grandma is still very active at 85.", translation: "我奶奶85歲了仍然非常活躍。", unit: 10},
+            {word: "shorts", phonetic: "['ʃɔrts]", pos: "n.", meaning: "短褲", example: "Nathan likes shorts with lots of pockets.", translation: "Nathan喜歡有很多口袋的短褲。", unit: 10},
+            {word: "volleyball", phonetic: "['vɑlɪbɔl]", pos: "n.", meaning: "排球", example: "My friends and I like to play volleyball at the beach.", translation: "我和朋友喜歡在海灘打排球。", unit: 10},
+            {word: "pass", phonetic: "['pæs]", pos: "v.", meaning: "傳（球）", example: "Pass me the ball.", translation: "把球傳給我。", unit: 11},
+            {word: "arm", phonetic: "['ɑrm]", pos: "n.", meaning: "手臂", example: "The gym teacher told us to raise our arms over our heads.", translation: "體育老師叫我們把手臂舉過頭頂。", unit: 11},
+            {word: "straight", phonetic: "['streɪt]", pos: "adj.", meaning: "直的", example: "Ray couldn't keep his legs straight.", translation: "Ray無法保持雙腿伸直。", unit: 11},
+            {word: "borrow", phonetic: "['bɔro]", pos: "v.", meaning: "借用", example: "Can I borrow your car this weekend?", translation: "這個週末我可以借你的車嗎？", unit: 11},
+            {word: "diamond", phonetic: "['daɪəmənd]", pos: "n.", meaning: "鑽石", example: "Sandra's ring has a big diamond on it.", translation: "Sandra的戒指上有一顆大鑽石。", unit: 12},
+            {word: "proud", phonetic: "['praʊd]", pos: "adj.", meaning: "驕傲的；自豪的", example: "Jefferson was proud because he got into a good school.", translation: "Jefferson很驕傲因為他進入了一所好學校。", unit: 12},
+            {word: "anywhere", phonetic: "['ɛnɪhwɛr]", pos: "adv.", meaning: "在任何地方", example: "You can do these exercises anywhere.", translation: "你可以在任何地方做這些運動。", unit: 12},
+            {word: "tennis", phonetic: "['tɛnɪs]", pos: "n.", meaning: "網球", example: "The tennis court is near the school.", translation: "網球場就在學校附近。", unit: 12},
+            {word: "match", phonetic: "['mætʃ]", pos: "n.", meaning: "比賽；競賽", example: "Our team is getting ready for the next match.", translation: "我們的隊伍正在為下一場比賽做準備。", unit: 13},
+            {word: "smart", phonetic: "['smɑrt]", pos: "adv.", meaning: "聰明地", example: "Minnie eats smart to stay healthy.", translation: "Minnie聰明地飲食以保持健康。", unit: 13},
+            {word: "pretty", phonetic: "['prɪtɪ]", pos: "adv.", meaning: "非常；相當", example: "I had a pretty bad headache this morning.", translation: "我今天早上頭痛得很厲害。", unit: 13},
+            {word: "return", phonetic: "[rɪ'tɜrn]", pos: "v.", meaning: "歸還", example: "When do I have to return these books to you?", translation: "我什麼時候要把這些書還給你？", unit: 13},
+            {word: "beauty", phonetic: "['bjuti]", pos: "n.", meaning: "美貌", example: "People know that actress for her beauty.", translation: "人們因她的美貌認識那位女演員。", unit: 14},
+            {word: "confident", phonetic: "['kɑnfədənt]", pos: "adj.", meaning: "有自信的", example: "Charlotte wasn't very confident as a teenager.", translation: "Charlotte十幾歲時不太有自信。", unit: 14},
+            {word: "truth", phonetic: "['truθ]", pos: "n.", meaning: "真相", example: "The truth will come out in the end.", translation: "真相最終會大白。", unit: 14},
+            {word: "character", phonetic: "['kærɪktɚ]", pos: "n.", meaning: "角色", example: "Which is your favorite character in the book?", translation: "你最喜歡書中的哪個角色？", unit: 14},
+            {word: "ordinary", phonetic: "['ɔrdnɛrɪ]", pos: "adj.", meaning: "平常的；一般的", example: "Holly has a very ordinary life.", translation: "Holly過著非常平常的生活。", unit: 15},
+            {word: "daily", phonetic: "['deɪlɪ]", pos: "adj.", meaning: "每天的；日常的", example: "What's your daily schedule like?", translation: "你的日常作息是怎樣的？", unit: 15},
+            {word: "laugh", phonetic: "['læf]", pos: "v.", meaning: "笑", example: "We laughed a lot during the movie.", translation: "我們在看電影時笑了很多次。", unit: 15},
+            {word: "link", phonetic: "['lɪŋk]", pos: "n.", meaning: "連結；關聯", example: "Those photos and stories are links to Amanda's past.", translation: "那些照片和故事是通往Amanda過去的連結。", unit: 15},
+            {word: "tradition", phonetic: "[trə'dɪʃən]", pos: "n.", meaning: "傳統", example: "Our teacher will introduce an African tradition next week.", translation: "我們的老師下週將介紹一個非洲傳統。", unit: 16},
+            {word: "knowledge", phonetic: "['nɑlɪdʒ]", pos: "n.", meaning: "知識", example: "Ken has little knowledge of the computer world.", translation: "Ken對電腦世界了解甚少。", unit: 16},
+            {word: "century", phonetic: "['sɛntʃərɪ]", pos: "n.", meaning: "世紀", example: "It's the 21st century now.", translation: "現在是21世紀。", unit: 16},
+            {word: "face", phonetic: "['feɪs]", pos: "v.", meaning: "面對", example: "You must face the results of your choices.", translation: "你必須面對你選擇的結果。", unit: 16},
+            {word: "beat", phonetic: "['biːt]", pos: "v.", meaning: "跳動", example: "Your heart beats around 70 times per minute.", translation: "你的心臟每分鐘跳動約70次。", unit: 17},
+            {word: "emotion", phonetic: "[ɪ'moʊʃən]", pos: "n.", meaning: "情緒", example: "Max hardly ever shows emotion.", translation: "Max幾乎從不表露情緒。", unit: 17},
+            {word: "clear", phonetic: "['klɪr]", pos: "adj.", meaning: "清楚的", example: "It was late, so Angel's thinking wasn't very clear.", translation: "太晚了，所以Angel的思路不太清楚。", unit: 17},
+            {word: "provide", phonetic: "[prə'vaɪd]", pos: "v.", meaning: "提供", example: "The camping area provides bathrooms and showers.", translation: "露營區提供浴室和淋浴設施。", unit: 17},
+            {word: "available", phonetic: "[ə'veləbl]", pos: "adj.", meaning: "可取得的", example: "This kind of fruit is only available in the summer.", translation: "這種水果只在夏季有售。", unit: 18},
+            {word: "survive", phonetic: "[sɚ'vaɪv]", pos: "v.", meaning: "生存；存活下來", example: "How did the lost hikers survive?", translation: "迷路的登山客是如何生存下來的？", unit: 18},
+            {word: "disappear", phonetic: "[dɪsə'pɪr]", pos: "v.", meaning: "消失", example: "Dinosaurs disappeared a long time ago.", translation: "恐龍很久以前就消失了。", unit: 18},
+            {word: "calm", phonetic: "['kɑm]", pos: "v.", meaning: "使冷靜", example: "Please calm yourself. Getting angry doesn't help.", translation: "請冷靜下來，生氣無濟於事。", unit: 18},
+            {word: "present", phonetic: "[prɪ'zɛnt]", pos: "adj.", meaning: "現在的；當前的", example: "Jonah likes his present school and doesn't want to leave.", translation: "Jonah喜歡他現在的學校，不想離開。", unit: 19},
+            {word: "thought", phonetic: "['θɔt]", pos: "n.", meaning: "想法", example: "It's just a thought, but we could try it.", translation: "這只是一個想法，但我們可以試試看。", unit: 19},
+            {word: "expect", phonetic: "[ɪk'spɛkt]", pos: "v.", meaning: "預期；預計", example: "Why do you always expect the worst?", translation: "你為什麼總是預期最壞的情況？", unit: 19},
+            {word: "project", phonetic: "['prɑdʒɛkt]", pos: "n.", meaning: "專案", example: "Our project is going to cost a lot of money.", translation: "我們的專案將花費很多錢。", unit: 19},
+            {word: "record", phonetic: "[rɪ'kɔrd]", pos: "v.", meaning: "錄製（影音）", example: "James recorded his daughter's voice.", translation: "James錄下了他女兒的聲音。", unit: 20},
+            {word: "robot", phonetic: "['robət]", pos: "n.", meaning: "機器人", example: "The clerks at the front desk are robots.", translation: "前台的服務員是機器人。", unit: 20},
+            {word: "importance", phonetic: "[ɪm'pɔrtəns]", pos: "n.", meaning: "重要性", example: "I will explain the importance of this rule.", translation: "我會解釋這條規則的重要性。", unit: 20},
+            {word: "necklace", phonetic: "['nɛklɪs]", pos: "n.", meaning: "項鍊", example: "This necklace belonged to my grandmother.", translation: "這條項鍊屬於我的祖母。", unit: 20},
+            {word: "husband", phonetic: "['hʌzbənd]", pos: "n.", meaning: "先生；丈夫", example: "Lynn's husband took her out for dinner on her birthday.", translation: "Lynn的先生在她生日時帶她出去吃晚餐。", unit: 20},
+            {word: "invitation", phonetic: "[ɪnvə'teɪʃən]", pos: "n.", meaning: "邀請（函）", example: "You must show your invitation to enter.", translation: "你必須出示邀請函才能入場。", unit: 20},
+            {word: "refuse", phonetic: "[rɪ'fjuz]", pos: "v.", meaning: "拒絕", example: "Mavis refuses to help her classmates cheat on tests.", translation: "Mavis拒絕幫助她的同學在考試中作弊。", unit: 20}
+        ];
+
+        // State Management
+        let currentFilter = 'all';
+        let currentCardIndex = 0;
+        let multiQuizState = {
+            currentQuestion: 0,
+            correct: 0,
+            incorrect: 0,
+            questions: []
+        };
+        let fillQuizState = {
+            currentQuestion: 0,
+            correct: 0,
+            incorrect: 0,
+            questions: []
+        };
+        let matchingState = {
+            selected: null,
+            matched: [],
+            pairs: []
+        };
+        let progressData = {
+            learned: new Set(),
+            totalCorrect: 0,
+            totalAttempts: 0,
+            currentStreak: 0
+        };
+
+        // Initialize
+        window.onload = function() {
+            renderVocabCards();
+            initMultiQuiz();
+            initFillQuiz();
+            initMatchingQuiz();
+            updateProgress();
+        };
+
+        // Tab Switching
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+            
+            if (tabName === 'progress') {
+                updateProgress();
+            }
+        }
+
+        // Render Vocab Cards
+        function renderVocabCards() {
+            const container = document.getElementById('vocab-container');
+            const filteredData = currentFilter === 'all' ? vocabData : 
+                vocabData.filter(v => {
+                    if (currentFilter === 1) return v.unit >= 1 && v.unit <= 5;
+                    if (currentFilter === 2) return v.unit >= 6 && v.unit <= 10;
+                    if (currentFilter === 3) return v.unit >= 11 && v.unit <= 15;
+                    if (currentFilter === 4) return v.unit >= 16 && v.unit <= 20;
+                });
+            
+            container.innerHTML = filteredData.map(vocab => `
+                <div class="vocab-card">
+                    <div class="vocab-word">${vocab.word}</div>
+                    <div class="vocab-phonetic">${vocab.phonetic}</div>
+                    <span class="vocab-pos">${vocab.pos}</span>
+                    <div class="vocab-meaning">${vocab.meaning}</div>
+                    <div class="vocab-example">${vocab.example}</div>
+                    <div class="vocab-translation">${vocab.translation}</div>
+                </div>
+            `).join('');
+        }
+
+        function filterUnit(unit) {
+            currentFilter = unit;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            renderVocabCards();
+        }
+
+        // Flashcards
+        function flipCard() {
+            document.getElementById('flashcard').classList.toggle('flipped');
+        }
+
+        function updateFlashcard() {
+            const vocab = vocabData[currentCardIndex];
+            document.getElementById('flashcard-word').textContent = vocab.word;
+            document.getElementById('flashcard-meaning').textContent = `${vocab.pos} ${vocab.meaning}`;
+            document.getElementById('flashcard-phonetic').textContent = vocab.phonetic;
+            document.getElementById('flashcard-example').textContent = vocab.example;
+            document.getElementById('card-counter').textContent = `${currentCardIndex + 1} / ${vocabData.length}`;
+            document.getElementById('flashcard').classList.remove('flipped');
+            
+            progressData.learned.add(vocab.word);
+        }
+
+        function nextCard() {
+            currentCardIndex = (currentCardIndex + 1) % vocabData.length;
+            updateFlashcard();
+        }
+
+        function previousCard() {
+            currentCardIndex = (currentCardIndex - 1 + vocabData.length) % vocabData.length;
+            updateFlashcard();
+        }
+
+        // Multiple Choice Quiz
+        function initMultiQuiz() {
+            const shuffled = [...vocabData].sort(() => Math.random() - 0.5).slice(0, 20);
+            multiQuizState.questions = shuffled.map(vocab => {
+                const wrongAnswers = vocabData
+                    .filter(v => v.word !== vocab.word)
+                    .sort(() => Math.random() - 0.5)
+                    .slice(0, 3)
+                    .map(v => v.meaning);
+                
+                const options = [vocab.meaning, ...wrongAnswers].sort(() => Math.random() - 0.5);
+                
+                return {
+                    word: vocab.word,
+                    phonetic: vocab.phonetic,
+                    correctAnswer: vocab.meaning,
+                    options: options,
+                    example: vocab.example
+                };
+            });
+            
+            renderMultiQuestion();
+        }
+
+        function renderMultiQuestion() {
+            const q = multiQuizState.questions[multiQuizState.currentQuestion];
+            const container = document.getElementById('multi-question-container');
+            
+            container.innerHTML = `
+                <div class="question-card">
+                    <div class="question-text">${q.word} ${q.phonetic}</div>
+                    <div style="font-size: 1rem; opacity: 0.8; margin-bottom: 20px;">${q.example}</div>
+                    <div class="options-grid">
+                        ${q.options.map((opt, i) => `
+                            <button class="option-btn" onclick="selectMultiOption(${i}, '${opt}')">${opt}</button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('multi-progress').textContent = 
+                `題目 ${multiQuizState.currentQuestion + 1} / ${multiQuizState.questions.length}`;
+            document.getElementById('multi-score').textContent = 
+                `正確: ${multiQuizState.correct} | 錯誤: ${multiQuizState.incorrect}`;
+        }
+
+        function selectMultiOption(index, selected) {
+            const q = multiQuizState.questions[multiQuizState.currentQuestion];
+            const buttons = document.querySelectorAll('#multi-question-container .option-btn');
+            
+            buttons.forEach(btn => btn.disabled = true);
+            
+            progressData.totalAttempts++;
+            
+            if (selected === q.correctAnswer) {
+                buttons[index].classList.add('correct');
+                multiQuizState.correct++;
+                progressData.totalCorrect++;
+                progressData.currentStreak++;
+                progressData.learned.add(q.word);
+            } else {
+                buttons[index].classList.add('incorrect');
+                multiQuizState.incorrect++;
+                progressData.currentStreak = 0;
+                buttons.forEach((btn, i) => {
+                    if (q.options[i] === q.correctAnswer) {
+                        btn.classList.add('correct');
+                    }
+                });
+            }
+            
+            document.getElementById('multi-next-btn').disabled = false;
+            document.getElementById('multi-score').textContent = 
+                `正確: ${multiQuizState.correct} | 錯誤: ${multiQuizState.incorrect}`;
+        }
+
+        function nextMultiQuestion() {
+            multiQuizState.currentQuestion++;
+            document.getElementById('multi-next-btn').disabled = true;
+            
+            if (multiQuizState.currentQuestion < multiQuizState.questions.length) {
+                renderMultiQuestion();
+            } else {
+                showMultiResults();
+            }
+        }
+
+        function showMultiResults() {
+            const percentage = Math.round((multiQuizState.correct / multiQuizState.questions.length) * 100);
+            const container = document.getElementById('multi-question-container');
+            
+            let message = '';
+            if (percentage >= 90) message = '🎉 太棒了！你完全掌握了！';
+            else if (percentage >= 70) message = '👍 很不錯！繼續加油！';
+            else if (percentage >= 50) message = '💪 還不錯，再多練習會更好！';
+            else message = '📚 需要多複習喔！加油！';
+            
+            container.innerHTML = `
+                <div class="results-container">
+                    <h2>測驗完成！</h2>
+                    <div class="results-score">${percentage}%</div>
+                    <div class="results-message">${message}</div>
+                    <div class="results-details">
+                        <p style="font-size: 1.2rem; margin: 10px 0;">✅ 答對：${multiQuizState.correct} 題</p>
+                        <p style="font-size: 1.2rem; margin: 10px 0;">❌ 答錯：${multiQuizState.incorrect} 題</p>
+                        <p style="font-size: 1.2rem; margin: 10px 0;">📊 正確率：${percentage}%</p>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('multi-next-btn').style.display = 'none';
+        }
+
+        function restartQuiz(type) {
+            if (type === 'multi') {
+                multiQuizState = { currentQuestion: 0, correct: 0, incorrect: 0, questions: [] };
+                document.getElementById('multi-next-btn').style.display = 'inline-block';
+                document.getElementById('multi-next-btn').disabled = true;
+                initMultiQuiz();
+            } else if (type === 'fill') {
+                fillQuizState = { currentQuestion: 0, correct: 0, incorrect: 0, questions: [] };
+                document.getElementById('fill-check-btn').style.display = 'inline-block';
+                document.getElementById('fill-next-btn').style.display = 'inline-block';
+                document.getElementById('fill-next-btn').disabled = true;
+                initFillQuiz();
+            } else if (type === 'match') {
+                matchingState = { selected: null, matched: [], pairs: [] };
+                initMatchingQuiz();
+            }
+        }
+
+        // Fill in the Blank Quiz
+        function initFillQuiz() {
+            const shuffled = [...vocabData].sort(() => Math.random() - 0.5).slice(0, 20);
+            fillQuizState.questions = shuffled.map(vocab => ({
+                word: vocab.word,
+                example: vocab.example,
+                translation: vocab.translation,
+                phonetic: vocab.phonetic,
+                meaning: vocab.meaning
+            }));
+            
+            renderFillQuestion();
+        }
+
+        function renderFillQuestion() {
+            const q = fillQuizState.questions[fillQuizState.currentQuestion];
+            const container = document.getElementById('fill-question-container');
+            const blankedExample = q.example.replace(new RegExp(q.word, 'gi'), '______');
+            
+            container.innerHTML = `
+                <div class="question-card">
+                    <div class="question-text">填入正確的單字</div>
+                    <div style="font-size: 1.2rem; margin: 20px 0; line-height: 1.8;">${blankedExample}</div>
+                    <div style="font-size: 1rem; opacity: 0.8; margin-bottom: 25px;">${q.translation}</div>
+                    <div style="font-size: 0.95rem; opacity: 0.7; margin-bottom: 20px;">提示：${q.phonetic} - ${q.meaning}</div>
+                    <input type="text" id="fill-answer" 
+                           style="width: 100%; padding: 15px; font-size: 1.2rem; border-radius: 10px; 
+                                  border: 2px solid rgba(255,255,255,0.3); background: rgba(0,0,0,0.3); 
+                                  color: white; font-family: 'Noto Sans TC', sans-serif;"
+                           placeholder="在此輸入答案..." />
+                    <div id="fill-feedback" style="margin-top: 20px; font-size: 1.1rem;"></div>
+                </div>
+            `;
+            
+            document.getElementById('fill-progress').textContent = 
+                `題目 ${fillQuizState.currentQuestion + 1} / ${fillQuizState.questions.length}`;
+            document.getElementById('fill-score').textContent = 
+                `正確: ${fillQuizState.correct} | 錯誤: ${fillQuizState.incorrect}`;
+            
+            document.getElementById('fill-answer').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    checkFillAnswer();
+                }
+            });
+        }
+
+        function checkFillAnswer() {
+            const q = fillQuizState.questions[fillQuizState.currentQuestion];
+            const answer = document.getElementById('fill-answer').value.trim().toLowerCase();
+            const feedback = document.getElementById('fill-feedback');
+            
+            document.getElementById('fill-answer').disabled = true;
+            document.getElementById('fill-check-btn').disabled = true;
+            
+            progressData.totalAttempts++;
+            
+            if (answer === q.word.toLowerCase()) {
+                feedback.innerHTML = `<div style="color: var(--success); font-weight: 700;">✅ 正確！答案是：${q.word}</div>`;
+                fillQuizState.correct++;
+                progressData.totalCorrect++;
+                progressData.currentStreak++;
+                progressData.learned.add(q.word);
+            } else {
+                feedback.innerHTML = `<div style="color: var(--error); font-weight: 700;">❌ 錯誤！正確答案是：${q.word}</div>`;
+                fillQuizState.incorrect++;
+                progressData.currentStreak = 0;
+            }
+            
+            document.getElementById('fill-next-btn').disabled = false;
+            document.getElementById('fill-score').textContent = 
+                `正確: ${fillQuizState.correct} | 錯誤: ${fillQuizState.incorrect}`;
+        }
+
+        function nextFillQuestion() {
+            fillQuizState.currentQuestion++;
+            document.getElementById('fill-check-btn').disabled = false;
+            document.getElementById('fill-next-btn').disabled = true;
+            
+            if (fillQuizState.currentQuestion < fillQuizState.questions.length) {
+                renderFillQuestion();
+            } else {
+                showFillResults();
+            }
+        }
+
+        function showFillResults() {
+            const percentage = Math.round((fillQuizState.correct / fillQuizState.questions.length) * 100);
+            const container = document.getElementById('fill-question-container');
+            
+            let message = '';
+            if (percentage >= 90) message = '🎉 完美！你的拼字能力超強！';
+            else if (percentage >= 70) message = '👍 很好！繼續保持！';
+            else if (percentage >= 50) message = '💪 不錯，多練習會更進步！';
+            else message = '📚 加強拼字練習會有幫助！';
+            
+            container.innerHTML = `
+                <div class="results-container">
+                    <h2>測驗完成！</h2>
+                    <div class="results-score">${percentage}%</div>
+                    <div class="results-message">${message}</div>
+                    <div class="results-details">
+                        <p style="font-size: 1.2rem; margin: 10px 0;">✅ 答對：${fillQuizState.correct} 題</p>
+                        <p style="font-size: 1.2rem; margin: 10px 0;">❌ 答錯：${fillQuizState.incorrect} 題</p>
+                        <p style="font-size: 1.2rem; margin: 10px 0;">📊 正確率：${percentage}%</p>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('fill-check-btn').style.display = 'none';
+            document.getElementById('fill-next-btn').style.display = 'none';
+        }
+
+        // Matching Quiz
+        function initMatchingQuiz() {
+            const shuffled = [...vocabData].sort(() => Math.random() - 0.5).slice(0, 10);
+            matchingState.pairs = shuffled.map(v => ({
+                word: v.word,
+                meaning: v.meaning
+            }));
+            
+            matchingState.matched = [];
+            matchingState.selected = null;
+            
+            renderMatching();
+        }
+
+        function renderMatching() {
+            const leftWords = matchingState.pairs.map((p, i) => p.word).sort(() => Math.random() - 0.5);
+            const rightMeanings = matchingState.pairs.map((p, i) => p.meaning).sort(() => Math.random() - 0.5);
+            
+            document.getElementById('match-left').innerHTML = leftWords.map((word, i) => `
+                <button class="option-btn" onclick="selectMatch('word', '${word}')" 
+                        id="word-${word}" ${matchingState.matched.includes(word) ? 'disabled' : ''}>
+                    ${word}
+                </button>
+            `).join('');
+            
+            document.getElementById('match-right').innerHTML = rightMeanings.map((meaning, i) => `
+                <button class="option-btn" onclick="selectMatch('meaning', '${meaning}')" 
+                        id="meaning-${meaning}" ${matchingState.matched.some(m => matchingState.pairs.find(p => p.word === m).meaning === meaning) ? 'disabled' : ''}>
+                    ${meaning}
+                </button>
+            `).join('');
+            
+            document.getElementById('match-score').textContent = 
+                `已配對: ${matchingState.matched.length} / ${matchingState.pairs.length}`;
+        }
+
+        function selectMatch(type, value) {
+            if (matchingState.selected === null) {
+                matchingState.selected = { type, value };
+                if (type === 'word') {
+                    document.getElementById(`word-${value}`).style.background = 'rgba(255, 107, 53, 0.5)';
+                } else {
+                    document.getElementById(`meaning-${value}`).style.background = 'rgba(255, 107, 53, 0.5)';
+                }
+            } else {
+                if (matchingState.selected.type !== type) {
+                    const word = type === 'word' ? value : matchingState.selected.value;
+                    const meaning = type === 'meaning' ? value : matchingState.selected.value;
+                    
+                    const pair = matchingState.pairs.find(p => p.word === word);
+                    
+                    if (pair && pair.meaning === meaning) {
+                        matchingState.matched.push(word);
+                        progressData.learned.add(word);
+                        progressData.totalCorrect++;
+                        progressData.currentStreak++;
+                        
+                        document.getElementById(`word-${word}`).classList.add('correct');
+                        document.getElementById(`meaning-${meaning}`).classList.add('correct');
+                        
+                        if (matchingState.matched.length === matchingState.pairs.length) {
+                            setTimeout(() => {
+                                alert('🎉 恭喜！全部配對正確！');
+                            }, 500);
+                        }
+                    } else {
+                        document.getElementById(`word-${word}`).classList.add('incorrect');
+                        document.getElementById(`meaning-${meaning}`).classList.add('incorrect');
+                        progressData.currentStreak = 0;
+                        
+                        setTimeout(() => {
+                            document.getElementById(`word-${word}`).classList.remove('incorrect');
+                            document.getElementById(`meaning-${meaning}`).classList.remove('incorrect');
+                        }, 1000);
+                    }
+                    
+                    progressData.totalAttempts++;
+                }
+                
+                document.querySelectorAll('.option-btn').forEach(btn => {
+                    if (!btn.disabled) {
+                        btn.style.background = '';
+                    }
+                });
+                matchingState.selected = null;
+                
+                setTimeout(() => renderMatching(), 1000);
+            }
+        }
+
+        function checkMatching() {
+            if (matchingState.matched.length === matchingState.pairs.length) {
+                alert('🎉 完美！所有配對都正確！');
+            } else {
+                alert(`還有 ${matchingState.pairs.length - matchingState.matched.length} 組未完成配對`);
+            }
+        }
+
+        // Progress Tracking
+        function updateProgress() {
+            const percentage = Math.round((progressData.learned.size / vocabData.length) * 100);
+            const accuracy = progressData.totalAttempts > 0 ? 
+                Math.round((progressData.totalCorrect / progressData.totalAttempts) * 100) : 0;
+            
+            document.getElementById('overall-progress').style.width = percentage + '%';
+            document.getElementById('overall-progress').textContent = percentage + '%';
+            
+            document.getElementById('stat-total').textContent = progressData.learned.size;
+            document.getElementById('stat-correct').textContent = progressData.totalCorrect;
+            document.getElementById('stat-accuracy').textContent = accuracy + '%';
+            document.getElementById('stat-streak').textContent = progressData.currentStreak;
+        }
+    </script>
+</body>
+</html>
